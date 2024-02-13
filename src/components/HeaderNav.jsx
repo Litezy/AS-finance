@@ -10,11 +10,11 @@ const HeaderNav = () => {
 
   
     return (
-        <div className='w-[100%] md:w-full bg-[#edfd93]  h-20 mx-auto fixed top-0 right-0 -left-0 px-0'>
+        <div className='w-[100%] md:w-full bg-[#edfd93]  h-16 mx-auto fixed top-0 right-0 -left-0 px-0'>
             <div className="flex items-center justify-between">
                 <div className="flex items-center  w-1/2  h-fit">
                     <img src={logo} alt="logo-img" className='w-20 object-cover' />
-                    <h2 className='font-bold text-xl'>AS <span className='text-white'>finace</span></h2>
+                    <h2 className='font-bold text-xl'>AS <span className='text-orange-500'>finance</span></h2>
                 </div>
                 <div className="md:hidden mr-5">
                     <Icon onClick={() => setShow(prev => !prev)} className='text-4xl cursor-pointer' />

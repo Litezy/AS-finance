@@ -33,19 +33,19 @@ const HomePage = () => {
                         <h3 className='text-left font-medium'>At AS Finance, we're committed to empowering your financial journey with expertise, integrity, and personalized solutions. Whether you're planning for retirement, investing for the future, or seeking to manage your wealth more effectively, we're here to guide you every step of the way.</h3>
                     </div>
                     <div className="mt-10 ">
-                        <div className="text-center l bg-black text-white font-bold py-3 rounded-full text-2xl mb-5">OUR SERVICES</div>
+                        <div className="text-center l bg-orange-500 text-white font-bold py-3 rounded-full text-2xl">OUR SERVICES</div>
                         <div className=" h-fit py-2">
                          {finance.map((item,i) =>(
                             <ul key={i} className=' mx-auto h-full  flex flex-col gap-3 '>
-                                <div className="w-full px-3 bg-slate-100 mb-2">
-                                <span className='bg-black  py-2 flex items-center justify-center'><FaRegCircleCheck className='text-white text-2xl flex w-full mt-2'/></span>
+                                <div className="w-full px-3  py-5 mb-2">
+                                <span className='bg-black/60  py-2 flex items-center justify-center'><FaRegCircleCheck className='text-white text-2xl flex w-full mt-2'/></span>
                                 <li className='mt-2 font-semibold rounded-sm text-left  py-3 text-lg' > {item.title}</li>
                                 </div>
                             </ul>
                          ))}
                         </div>
                     </div>
-                    <div onClick={() =>navigate(`/signup`)} className="mt-10 text-center bg-black text-white font-bold py-5 animate-bounce rounded-full text-2xl">Get Started</div>
+                    <div onClick={() =>navigate(`/signup`)} className="mt-10 text-center bg-orange-500 text-white font-bold py-5 rounded-full text-2xl">Get Started</div>
                 </div>
 
 
