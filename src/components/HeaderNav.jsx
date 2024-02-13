@@ -14,7 +14,7 @@ const HeaderNav = () => {
             <div className="flex items-center justify-between">
                 <div className="flex items-center  w-1/2  h-fit">
                     <img src={logo} alt="logo-img" className='w-20 object-cover' />
-                    <h2 className='font-bold text-2xl'>AS <span className='text-white'>finace</span></h2>
+                    <h2 className='font-bold text-xl'>AS <span className='text-white'>finace</span></h2>
                 </div>
                 <div className="md:hidden mr-5">
                     <Icon onClick={() => setShow(prev => !prev)} className='text-4xl cursor-pointer' />
