@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  box-sizing: border-box;
+  font-family: "Urbanist", sans-serif;
+}
+
+.colors{
+color: #edfd93;
+ color: #93d6d6; 
+  color: #cbe1d6;
+  color: #c8cee1;
+}
+.sidenav {
+  transform: translateX(0%);
+  transition-duration: 5s;
+  transition: all 4s ease;
+}
+.off {
+  transform: translateX(-400%);
+  transition: all 2s ease;
+}
