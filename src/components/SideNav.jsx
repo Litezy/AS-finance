@@ -23,9 +23,9 @@ const SideNav = ({ closeView }) => {
   return (
     <div id='nav' ref={toggle} className='w-[40%] fixed top-0 right-0 bg-black/90 rounded-sm h-[100vh]  '>
       <div className="flex items-center  flex-col gap-[20rem] text-lg">
-        <div className="flex items-center flex-col text-white gap-2 pt-3 mt-14 ">
+        <div className="flex items-left flex-col text-white gap-2 pt-3 mt-14 w-10/12 mx-auto ">
       <div className="">
-        <AiOutlineClose onClick={() =>closeView()} className='text-4xl cursor-pointer absolute top-5 right-5' onClick={() => closeView()} />
+        <AiOutlineClose onClick={() =>closeView()} className='text-4xl cursor-pointer absolute top-5 right-5'  />
       </div>
           <Link to="/" className="hover:underline">Home</Link>
           <Link to="/services" className="hover:underline">Services</Link>
@@ -35,7 +35,7 @@ const SideNav = ({ closeView }) => {
           
       
         </div>
-        <div className="text-white w-full flex items-center flex-col">
+        <div className="text-white flex items-left flex-col w-10/12">
         <Link to="/contact" className="hover:underline">Contact us</Link>
         <Link to="/contact" className="hover:underline">Email us</Link>
         </div>
