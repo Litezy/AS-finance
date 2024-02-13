@@ -7,10 +7,10 @@ import { Link } from 'react-router-dom'
 const Login = () => {
   return (
     <PageLayout>
-      <div className="flex items-center justify-between h-full bg w-11/12 mx-auto">
+      <div className="flex items-center justify-between h-full bg w-11/12 mx-auto overflow-hidden">
         <div className="bg-black/40 h-full w-full text-white flex items-center justify-center">
           <div className="w-3/4 mx-auto ">
-            <div className="text-5xl font-bold text-[#edfd93]">Login Account</div>
+            <div className="text-4xl font-bold text-[#edfd93]">Login Account</div>
             <form>
               <div className="mt-5">
                 <div className="font-bold text-orange-500">Username</div>

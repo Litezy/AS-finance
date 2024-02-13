@@ -45,7 +45,7 @@ const HomePage = () => {
                          ))}
                         </div>
                     </div>
-                    <div onClick={() =>navigate(`/signup`)} className="mt-10 text-center bg-orange-500 text-white font-bold py-5 rounded-full text-2xl">Get Started</div>
+                    <div onClick={() =>navigate(`/signup`)} className="mt-5 text-center bg-orange-500 text-white font-bold py-5 rounded-full text-2xl">Get Started</div>
                 </div>
 
 
