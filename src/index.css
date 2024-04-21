@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -20,7 +20,7 @@ body {
   padding: 0;
   overflow-x: hidden;
   box-sizing: border-box;
-  font-family: "Urbanist", sans-serif;
+  font-family: "Nunito Sans", sans-serif;
 }
 
 .colors {
@@ -43,9 +43,242 @@ body {
 
 .bg {
   background-image: url(./assets/nature.jpg);
-  background-repeat: no-repeat;
+  /* background-repeat: no-repeat; */
   object-fit: contain;
   height: 500;
   width: 100%;
   margin-right: 2rem;
+}
+
+.signup {
+  background-image: url(./assets/dog.jpg);
+  object-fit: cover;
+}
+
+.circle1 {
+  width: 10px;
+  height: 20px;
+  border-radius: 70%;
+  border-top: 10px solid white;
+  border-left: 0.7rem solid transparent;
+  border-right: 10px solid white;
+  border-bottom: 0.7rem solid transparent;
+
+}
+
+.circle2 {
+  width: 10px;
+  height: 20px;
+  border-radius: 70%;
+  border-top: 10px solid white;
+  border-left: 0.7rem solid transparent;
+  border-right: 10px solid white;
+  border-bottom: 0.7rem solid transparent;
+}
+
+.circle3 {
+
+  width: 10px;
+  height: 20px;
+  border-radius: 70%;
+  border-top: 10px solid white;
+  border-left: 0.7rem solid transparent;
+  border-right: 10px solid white;
+  border-bottom: 0.7rem solid transparent;
+}
+
+.circle4 {
+  width: 10px;
+  height: 20px;
+  border-radius: 70%;
+  border-top: 10px solid transparent;
+  border-left: 0.7rem solid white;
+  border-right: 10px solid transparent;
+  border-bottom: 0.7rem solid white;
+
+}
+
+.circle5 {
+  width: 10px;
+  height: 20px;
+  border-radius: 70%;
+  border-top: 10px solid transparent;
+  border-left: 0.7rem solid white;
+  border-right: 10px solid transparent;
+  border-bottom: 0.7rem solid white;
+}
+
+.circle6 {
+
+  width: 10px;
+  height: 20px;
+  border-radius: 70%;
+  border-top: 10px solid transparent;
+  border-left: 0.7rem solid white;
+  border-right: 10px solid transparent;
+  border-bottom: 0.7rem solid white;
+
+}
+.middle{
+  width: 80%;
+  height: 2px;
+  background-color: white;
+  margin: 0 auto;
+}
+.scroll::-webkit-scrollbar{
+  width: 8px;
+  background-color: white;
+}
+.scroll::-webkit-scrollbar-thumb{
+  width: 10px;
+  border-radius: 50px;
+  background-color: black;
+
+}
+/* HTML: <div class="loader"></div> */
+.loader {
+  width: 50px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 6px solid;
+  border-color: white #0000;
+  animation: l1 1s infinite;
+}
+@keyframes l1 {to{transform: rotate(1turn)}}
+@keyframes pop-in {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  80% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+.loader1 {
+  width: 20px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 2px solid;
+  border-color: black #0000;
+  animation: l2 1s infinite;
+}
+@keyframes l2 {to{transform: rotate(1turn)}}
+@keyframes pop-in {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  80% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.orange{
+  color: #f9751a;
+}
+
+
+.orangebg{
+  background-color: #f9751a;
+}
+.depo-bod{
+  border: 2px solid;
+  border-color: white;
+
+}
+.depo {
+  background: #f9751a;
+ 
+}
+.main{
+  color: #430a5d;
+}
+.mainbg{
+  background-color: #430a5d;
+}
+.alt2{
+  background-color: #E26EE5;
+}
+.alt{
+  color: #E26EE5;
+}
+.scroll::-webkit-scrollbar{
+  width: 10px;
+  background-color:white ;
+  border-radius: 50px;
+}
+.scroll::-webkit-scrollbar-thumb{
+  width: 5px;
+  border-radius: 50px;
+  background-color: #6b1b91;
+
+}
+.scroll{
+  margin-right: .5rem;
+}
+.scroll2::-webkit-scrollbar{
+  width: 10px;
+  background-color:whitesmoke ;
+  border-radius: 50px;
+}
+.scroll2::-webkit-scrollbar-thumb{
+  width: 5px;
+  border-radius: 50px;
+  background-color: #430a5d;
+
+}
+.scroll2{
+  margin-right: .5rem;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  appearance: textfield;
+}
+.animate{
+  animation: pulse 2s infinite ease-in-out;
+  border-color: red;
+}
+@keyframes pulse {
+  0% {
+    border-color: #f6865a;
+    box-shadow: 0 0 0 0 rgba(246, 227, 90, 0.4);
+  }
+  50% {
+    border-color: red;
+    box-shadow: 0 0 0 0.9rem rgba(248, 165, 49, 0);
+  }
+  80% {
+    border-color: grey;
+    box-shadow: 0 0 0 0 rgba(246, 227, 90, 0);
+  }
+}
+.black{
+  color: black;
+}
+.side-nav {
+  position: fixed;
+  top: 0;
+  left: -50%; 
+  transition: left 3.5s ease-in-out; 
+  z-index: 50;
+  border-radius: 0 1rem 1rem 0; 
+}
+.signup{
+  background-image: url(./assets/investment.jpg);
+  background-repeat: no-repeat;
+  object-fit: contain;
 }

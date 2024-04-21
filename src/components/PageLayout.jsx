@@ -2,16 +2,17 @@ import React from 'react'
 import HeaderNav from './HeaderNav'
 import Footer from './Footer'
 
-const PageLayout = ({children}) => {
+const PageLayout = ({children, ...props}) => {
   return (
     <div>
-       <div className="h-[10vh] ">
-       <HeaderNav/>
+       <div className="h-[10vh] mb-1">
+       <HeaderNav className=""/>
+       
        </div>
-       <div className="h-[85vh]  overflow-x-auto ">
+       <div {...props} className="">
        {children}
        </div>
-       <div className="h-[5vh]  bg-[#edfd93]">
+       <div className="h-fit py-20 bg-[#430a5d] z-auto">
        <Footer/>
        </div>
     </div>

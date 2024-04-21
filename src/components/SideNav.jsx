@@ -1,16 +1,25 @@
-import React, { useEffect, useRef } from 'react'
-import { Link } from 'react-router-dom'
+import React, { useEffect, useRef, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import { AiOutlineClose } from "react-icons/ai";
-const SideNav = ({ closeView }) => {
+import { FaHome } from "react-icons/fa";
+import { GiUncertainty } from "react-icons/gi";
+import { RiPlayListFill } from "react-icons/ri";
+import { FaRegUser } from "react-icons/fa";
+import { CgLogIn } from "react-icons/cg"
+import { BsFillTelephoneOutboundFill } from "react-icons/bs";
+import { MdOutlineEmail } from "react-icons/md";
+import imgdog from '../assets/dog.jpg'
+const SideNav = ({ closeView,...props }) => {
   const toggle = useRef()
+const navigate = useNavigate()
 
   useEffect(() => {
     if (toggle) {
       window.addEventListener("click", (event) => {
         if (toggle.current !== null) {
-          if(toggle.current.contains(event.target)){
+          if (toggle.current.contains(event.target)) {
             console.log(`not null`)
-          }else{
+          } else {
             closeView()
           }
         }
@@ -19,25 +28,52 @@ const SideNav = ({ closeView }) => {
 
   }, [])
 
- 
+
   return (
-    <div id='nav' ref={toggle} className='w-[40%] fixed top-0 right-0 bg-black/95 rounded-sm h-[100vh]  '>
-      <div className="flex items-center  flex-col gap-[20rem] text-lg">
-        <div className="flex items-left flex-col text-[#edfd93] font-bold gap-2 pt-3 mt-14 w-10/12 mx-auto ">
-      <div className="">
-        <AiOutlineClose onClick={() =>closeView()} className='text-4xl cursor-pointer absolute top-5 right-5 text-white'  />
-      </div>
-          <Link to="/" className="hover:underline">Home</Link>
-          <Link to="/services" className="hover:underline">Services</Link>
-          <Link to="/about" className="hover:underline">About us</Link>
-          <Link to="/login" className="hover:underline">Login</Link>
-          <Link to="/signup" className="hover:underline">Sign up</Link>
+    <div id='nav' ref={toggle} className='w-[60%] rounded-md fixed top-0 right-0 bg-white  h-[100vh]  ' >
+      <div className="flex items-center  flex-col gap-20 text-xl">
+        <div className="flex items-center flex-col text-[#f9751a] font-bold gap-2 pt-3 mt-14 w-10/12 mx-auto ">
+          <div className="">
+            <AiOutlineClose onClick={() => closeView()} className='text-4xl cursor-pointer absolute top-5 right-5 text-[#5aaa9f]' />
+          </div>
+          <div className="flex w-2/3 mx-auto justify-even gap-5 hover:underline items-center">
+            <FaHome className='' />
+            <Link to="/" className="">Home</Link>
+          </div>
+          <div className="flex w-2/3 mx-auto justify-even gap-5 hover:underline items-center">
+            <RiPlayListFill />
+            <Link to="/services" className="">Playlist</Link>
+          </div>
+          <div className="flex w-2/3 mx-auto justify-even gap-5 hover:underline items-center">
+            <GiUncertainty />
+
+            <Link to="/about" className="">About us</Link>
+          </div>
+          <div className="flex w-2/3 mx-auto justify-even gap-5 hover:underline items-center">
+            <CgLogIn />
+            <Link to="/login" className="">Login</Link>
+          </div>
+          <div className="flex w-2/3 mx-auto justify-even gap-5 hover:underline items-center">
+            <FaRegUser />
+            <Link to="/signup" className="">Sign up</Link>
+          </div>
         </div>
-        <div className="text-[#edfd93] font-bold flex items-left flex-col w-10/12">
-        <Link to="/contact" className="hover:underline">Contact us</Link>
-        <Link to="/contact" className="hover:underline">Email us</Link>
+
+        <div className="cursor-pointer">
+          <img onClick={() => navigate('/signup')} src={imgdog} className='w-32 rounded-full' alt="" />
         </div>
-      
+
+        <div className="text-[#f9751a] font-bold flex items-center flex-col w-10/12">
+          <div className="flex  w-2/3 mx-auto justify-even gap-5 hover:underline items-center">
+            <BsFillTelephoneOutboundFill />
+            <Link to="/contact" className="">Contact us</Link>
+          </div>
+          <div className="flex w-2/3 mx-auto justify-even gap-5 hover:underline items-center">
+            <MdOutlineEmail />
+            <Link to="/contact" className="">Email us</Link>
+          </div>
+        </div>
+
       </div>
 
     </div>
