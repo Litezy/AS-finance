@@ -119,7 +119,7 @@ const Deposit = ({ setactive, setTrigger }) => {
               <h1 className='font-bold text-xl'>Latest Deposits</h1>
 
               <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-                <table class=" md:w-full md:text-sm text-[12px] text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                <table class="w-full md:text-sm text-[12px] text-left rtl:text-right text-gray-500 dark:text-gray-400">
                   <thead class="text-xs text-center text-white uppercase bg-gray-50 mainbg ">
                     <tr>
                       <th scope="col" class="md:px-6 px-2 py-3 w-10">
@@ -131,7 +131,7 @@ const Deposit = ({ setactive, setTrigger }) => {
                       <th scope="col" class="md:px-6 px-2 py-3 w-8">
                         Amount
                       </th>
-                      <th scope="col" class="md:px-6 px-2 py-3 w-[35%]">
+                      <th scope="col" class="md:px-6 px-2 py-3  hidden md:block">
                         Description
                       </th>
                       <th scope="col" class="md:px-6 px-2 py-3">
@@ -146,13 +146,13 @@ const Deposit = ({ setactive, setTrigger }) => {
                         <th scope="row" class={` capitalize ${item.type === 'deposit' ? 'text-green-500 font-bold ' : 'text-red-500 font-bold '} capitalize px-6 py-4 font-medium  whitespace-nowrap `}>
                           {item.type}
                         </th>
-                        <td class="md:px-6 md:py-4 text-center px-3">
+                        <td class="text-center ">
                           {moment(item.createdAt).format('DD MMMM YYYY hh:mm A')}
                         </td>
-                        <td class="md:px-6 px-2 md:py-4 text-center">
+                        <td class="text-center">
                           {formatter.format(item.amount)}
                         </td>
-                        <td class="md:px-6 md:py-4 md:w-[45%] w-[10%] text-left">
+                        <td class="md:px-6 md:py-4 text-left  hidden md:block  ">
                           {item.message}
                         </td>
                         <td class={` capitalize  text-center ${item.status === 'pending' ? 'text-yellow-300 ' : 'px-2  text-green-500 '} ${item.status === 'declined' ? ' text-red-500' : ''}  rounded-md mx-auto`}>

@@ -37,11 +37,15 @@ import Cookies from 'js-cookie'
 import { CookieName } from '../../components/utils/UtilNames'
 import { FaBarsStaggered } from "react-icons/fa6";
 import { GrClose } from "react-icons/gr";
+import VerifyEmail from '../../components/VerifyEmail'
+import notifyImg  from '../../assets/notifyimg.png'
+import chatImg  from '../../assets/chatimg.png'
+import { TfiHelpAlt } from "react-icons/tfi";
+import HelpChats from './HelpChats'
 
 const AdminPageLayout = () => {
   const [active, setActive] = useState('home')
   const [toggle, setToggle] = useState(false)
-  
   const Icon = toggle === true ? FaChevronUp : FaChevronDown
   const [showComp, setShowComp] = useState('')
   const [log, setLog] = useState(false)
@@ -59,14 +63,10 @@ const AdminPageLayout = () => {
  const logoutdiv = useRef(null)
  const [smallview, setSmallView] = useState(false)
 
-  const Showside = (item) =>{
-    setActive(item)
-    console.log(item)
-  }
+ 
   const fetchNotifications = useCallback(async () => {
     const response = await GetApi(Apis.auth.notify)
      const notifyData = response.data
-   
      const hasNotification = notifyData.filter(notification => notification.status === 'unread');
      if(hasNotification){ 
       sethasnotify(response.data)
@@ -80,7 +80,6 @@ const AdminPageLayout = () => {
      
   useEffect(()=>{
     fetchNotifications()
-    
   },[active,setActive,trigger,settrigger])
 
 
@@ -140,12 +139,10 @@ const [setsname,setSetsName] = useState('')
 
 const navigate = useNavigate()
  const logoutUser = async ()=>{
-  const response = await PostApi(Apis.auth.logout)
-  console.log(response)
     try {
+      const response = await PostApi(Apis.auth.logout)
       if(response.status === 200){
         successMessage(response.msg)
-        
         Cookies.remove(CookieName)
         navigate('/login')
       }else{
@@ -157,11 +154,15 @@ const navigate = useNavigate()
  }
   return (  
  <>
-        <div className="w-full relative">
-        <div className=" mx-auto h-full flex items-start gap-10  relative ">
+    <div className={`w-full relative ${profile.email_verified=== 'false' && 'signup h-screen '}`}>
+          {profile.email_verified=== 'false' &&
+          <div className="h-full w-3/4  mx-auto ">
+            <VerifyEmail data={data}/>
+          </div>}
+       {profile.email_verified=== 'true' && <div className=" mx-auto h-full flex items-start gap-10  relative ">
         {smallview &&  
         <div ref={smallV} style={{left: smallV ? '0' : '[-50%]'}} 
-        className={` ${smallview ? 'w-[55%] transition-all ease-in-out duration-500':'-w-[20%]'} side-nav ml-0.5 h-screen rounded-e-xl z-50 fixed top-0 left-0 mainbg md:hidden`}>
+        className={` ${smallview ? 'w-[55%] transition-all ease-in-out duration-500':'-w-[20%]'} side-nav ml-0.5 h-screen rounded-e-xl z-50 fixed top-0 left-0 mainbg md:hidden overflow-y-auto`}>
             <div onClick={()=> setSmallView(false)} className="w-fit ml-auto mr-6 mt-2 ">
             <GrClose  className='text-3xl text-white cursor-pointer' />
             </div>
@@ -198,6 +199,10 @@ const navigate = useNavigate()
                   <ImProfile className='text-xl' />
                   <Link>Profile</Link>
                 </li>
+                <li onClick={() => {setActive('help'), setSmallView(false)}} className={`flex ${active === 'help' ? 'bg-white text-[#201658]  py-2 rounded-sm ' : ''} items-center justify-left pl-5 gap-2 cursor-pointer`} >
+                  <TfiHelpAlt className='text-xl' />
+                  <Link>Help</Link>
+                </li>
                 </ul>
               </div>
               <div className="text-left mb-5 uppercase text-slate-300 mt-2 pl-2">others</div>
@@ -220,12 +225,13 @@ const navigate = useNavigate()
         </div>
         
         }
-<div className="w-[25%] h-fit fixed top-0 left-0  border-r-2 bg-[#430a5d] hidden md:block  rounded-e-none  ">
+      <div className="w-[25%] h-fit fixed top-0 left-0  border-r-2 bg-[#430a5d] hidden md:block rounded-e-none  ">
             <div className="w-11/12 mx-auto text-white mt-5  h-fit py-5 ">
            <div className="flex items-center gap-4 mb-5 relative">
             <img src={`${profileImg}/profiles/${data?.image}`} alt="" className='w-10 h-10 rounded-full object-cover' />
            <div className="capitalize font-bold text-2xl">Hi, {data?.username}</div>
-           {data?.kyc_status === 'verified' && <div className="absolute top-0 right-32"><BsFillPatchCheckFill className='text-sm text-blue-500'/></div>}
+           {data?.kyc_status === 'verified' && 
+           <div className="absolute top-0 md:right-32"><BsFillPatchCheckFill className='text-sm text-blue-500'/></div>}
            </div> 
               <div className="flex flex-col text-white items-left h-[30rem] py-10 text-sm overflow-y-auto scroll ">
                   <div className="text-left mb-5 uppercase text-slate-300">Account</div>
@@ -259,6 +265,10 @@ const navigate = useNavigate()
                 <li onClick={() => setActive('profile')} className={`flex ${active === 'profile' ? 'bg-white text-[#201658]  py-2 rounded-sm ' : ''} items-center justify-left pl-5 gap-2 cursor-pointer`} >
                   <ImProfile className='text-xl' />
                   <Link>Profile</Link>
+                </li>
+                <li onClick={() => setActive('help')} className={`flex ${active === 'help' ? 'bg-white text-[#201658]  py-2 rounded-sm ' : ''} items-center justify-left pl-5 gap-2 cursor-pointer`} >
+                  <TfiHelpAlt className='text-xl' />
+                  <Link>Help</Link>
                 </li>
                 
                 
@@ -334,14 +344,14 @@ const navigate = useNavigate()
               <div className="flex w-[37%] md:w-[20%] items-center gap-3 relative">
                 <div className="block">
                 <div onClick={()=>setActive('notifications')} className={` ${notifylength === 0 ?'px-2': 'px-3'}  cursor-pointer py-2 rounded-md bg-[#f0f4f8]  border relative`}> 
-                  <IoMdNotificationsOutline className='text-xl' />
-               {hasnotify && <div className={`${notifylength === 0 ?'': 'bg-red-500'} px-2 py-[2px] rounded-full text-[10px] flex items-center justify-center text-white font-bold  absolute  right-1 top-0`}>{notifylength === 0 ?'': notifylength}</div>}
+                  <img src={notifyImg} className='w-5' alt="" />
+               {hasnotify && <div className={`${notifylength === 0 ?'': 'bg-red-500'} w-[16px] rounded-md text-[9px] flex items-center justify-center text-white font-bold  absolute  right-2 top-0`}>{notifylength === 0 ?'': notifylength}</div>}
                 </div>
                 </div>
                 <div className="flex items-center gap-5 md:relative">
-                  <h2 className='capitalize font-bold text-[#5a606c]'>{data?.username}</h2>
-                  <img src={`${profileImg}/profiles/${data?.image}`} alt="" className='w-10 h-10 object-cover rounded-full' />
-                  {data?.kyc_status === 'verified' && <div className="absolute top-0 right-0 md:right-5"><BsFillPatchCheckFill className='text-xs text-blue-500'/></div>}
+                 <img src={chatImg} className='w-10 cursor-pointer' alt="" />
+                  <img onClick={() => setActive('profile')} src={`${profileImg}/profiles/${data?.image}`} alt="" className='w-8 h-8 object-cover rounded-full cursor-pointer' />
+                  {data?.kyc_status === 'verified' && <div className="absolute top-0 right-0 pl-4 md:right-5"><BsFillPatchCheckFill className='text-xs text-blue-500'/></div>}
                   <Icon1 onClick={() => setProfileIcon(prev => !prev)} className='text-sm cursor-pointer hidden md:block'/>
              
                 </div>
@@ -383,6 +393,8 @@ const navigate = useNavigate()
               /></div>}
             {active === 'investment' && <div className="">
               <Investments /></div>}
+            {active === 'help' && <div className="">
+              <HelpChats /></div>}
             {active === 'notifications' && <div className="">
               <Notifications settrigger={settrigger}/></div>}
             {active === 'transaction' && <div className="">
@@ -397,7 +409,7 @@ const navigate = useNavigate()
               <AdminProfile profile={profile} /></div>}
             </div>
           </div>
-        </div>
+        </div>}
       </div>
  </>
      

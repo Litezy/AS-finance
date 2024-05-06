@@ -13,6 +13,7 @@ import AdminProfile from './pages/Admin/AdminProfile'
 import AuthRoutes from './services/AuthRoutes'
 import Withdraws from './pages/Admin/Withdraws'
 import Notifications from './pages/Admin/Notifications'
+import AdminControl from './pages/SuperAdmin/AdminControl'
 // import Notify from './components/Notify'
 
 
@@ -25,17 +26,16 @@ const App = () => {
         <Route path='/' element={<AuthRoutes><HomePage /></AuthRoutes>} />
         <Route path='/login' element={<Login />} />
         <Route path='/signup' element={<SignUp />} />
-        <Route path='/settings' element={<Settings />} />
+        <Route path='/settings' element={<AuthRoutes><Settings/></AuthRoutes>} />
         <Route path='/profile-user' element={<AuthRoutes><AdminProfile /></AuthRoutes>} />
         <Route path='/home' element={<Home />} />
         <Route path='/dashboard' element={<AuthRoutes><AdminPageLayout /></AuthRoutes>} />
-        <Route path='/deposit' element={<Deposit />} />
-        <Route path='/investment' element={<Investments />} />
-        <Route path='/withdraw' element={<Withdraws />} />
-        <Route path='/transaction' element={<TransactionHistory />} />
-        <Route path='/notifications' element={<Notifications />} />
-        {/* <Route path='/notify' element={<Notify/>} /> */}
-
+        <Route path='/deposit' element={<AuthRoutes><Deposit /></AuthRoutes>} />
+        <Route path='/investment' element={<AuthRoutes><Investments /></AuthRoutes>} />
+        <Route path='/withdraw' element={<AuthRoutes><Withdraws /></AuthRoutes>} />
+        <Route path='/transaction' element={<AuthRoutes><TransactionHistory /></AuthRoutes>} />
+        <Route path='/notifications' element={<AuthRoutes><Notifications /></AuthRoutes>} />
+        <Route path='/admin' element={<AuthRoutes><AdminControl/></AuthRoutes>} />
       </Routes>
     </BrowserRouter>
   )

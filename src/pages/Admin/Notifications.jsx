@@ -73,13 +73,16 @@ const Notifications = ({ settrigger }) => {
     const recordsPerPage = 10;
     const lastIndex = currentPage * recordsPerPage;
     let firstIndex = lastIndex - recordsPerPage;
-    if (firstIndex === 0) {
-        firstIndex = 1
-    }
+   
     const records = notifications.slice(firstIndex, lastIndex)
     const npage = Math.ceil(notifications.length / recordsPerPage)
   
-
+    if(records.length === 0){
+        firstIndex = 0
+      }
+       if(firstIndex === 0){
+        firstIndex = 1
+      }
     const prevPage = () => {
         if (currentPage !== 1) {
             setCurrentPage(currentPage - 1)
@@ -104,8 +107,8 @@ const Notifications = ({ settrigger }) => {
                     <h1 className='text-xl font-bold'>Latest Notifications</h1>
                     <button onClick={Markread} className='text-sm font-bold px-3 py-1 mainbg text-white rounded-md'>mark all as read</button>
                 </div>
-                {records.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).slice(0,recordsPerPage).map((item, i) => (
-                    <div className={`bg-white mt-3 rounded-md py-3 flex flex-col border-b `} key={i} >
+                {records.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).slice(0,10).map((item, i) => (
+                    <div className={`${item.status === 'unread' ?'bg-[#dedfe1]' :'bg-white'} mt-3 rounded-md py-3 flex flex-col border-b `} key={i} >
                         <div className="w- ml-2 flex items-center gap-2 ">
                             <div className="w-10 h-10 rounded-full bg-[#f8fafc] flex items-center justify-center relative">
                                 <IoMdNotificationsOutline className='text-xl bg-[#f8fafc]' />

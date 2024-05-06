@@ -280,7 +280,7 @@ const Home = ({ sideview, image, setactive, setTrigger }) => {
             <div className="w-11/12 mx-auto  mt-3">
               <div className="flex items-center justify-between w-4/4 mx-auto">
                 <h1 className='md:text-xl font-bold text-[#430a5d]'>Pending Deposits:</h1>
-                <p className='font-bold'>({pendingWithdrawals.length})</p>
+                <p className='font-bold'>({pendingDeposits.length})</p>
               </div>
               <div className="flex items-center gap-5 mt-5 justify-center">
                 {loading && <Loading />}
@@ -316,7 +316,7 @@ const Home = ({ sideview, image, setactive, setTrigger }) => {
       </div>
 
       {pendingdepo && <>
-        <div ref={refDiv} className={`fixed top-[20%] h-72 overflow-y-auto scroll2 rounded-md md:left-[30%] md:w-[60%] bg-white border-2 `}>
+        <div ref={refDiv} className={` ${pendingDeposits.length === 1 ? 'h-fit':'h-72'} fixed top-[20%] left-10  overflow-y-auto scroll2 rounded-md md:left-[26%] md:w-[70%] bg-white border-2 `}>
           <h1 className='text-center text-back mt-2 font-bold md:text-2xl'>
             {pendingDeposits.length === 1 ? pendingDeposits.length === 0 ? 'Pending Deposit' : 'No Pending Deposits' : 'Pending Deposits'}</h1>
           <div class="relative overflow-x-auto shadow-md sm:rounded-lg ">
@@ -332,7 +332,7 @@ const Home = ({ sideview, image, setactive, setTrigger }) => {
                 <th scope="col" class="md:px-6 px-2 py-3 w-8">
                   Amount
                 </th>
-                <th scope="col" class="md:px-6 px-2 py-3 w-[35%]">
+                <th scope="col" class="md:px-6 px-2 py-3 md:w-[35%] hidden md:block">
                   Description
                 </th>
                 <th scope="col" class="md:px-6 px-2 py-3">
@@ -353,7 +353,7 @@ const Home = ({ sideview, image, setactive, setTrigger }) => {
                   <td class="md:px-6 px-2 md:py-4">
                     {formatter.format(item.amount)}
                   </td>
-                  <td class="md:px-6 md:py-4 md:w-[45%] w-[10%]  text-left">
+                  <td class="md:px-6 md:py-4 md:w-[45%] w-[10%] hidden md:block text-left">
                     {item.message}
                   </td>
                   <td class={` capitalize  text-center ${item.status === 'pending' ? 'text-yellow-300 ' : 'px-2  text-green-500 '} ${item.status === 'declined' ? ' text-red-500' : ''} px-2  rounded-md mx-auto`}>
@@ -371,7 +371,7 @@ const Home = ({ sideview, image, setactive, setTrigger }) => {
         </div>
       </>}
       {pendingwith && <>
-        <div ref={refDiv} className={`  fixed top-[20%] h-48 overflow-y-auto scroll2 rounded-md md:left-[30%] w-[100%] bg-white border-2 `}>
+        <div ref={refDiv} className={` ${pendingDeposits.length === 1 ? 'h-fit':'h-72'} fixed top-[20%] left-10  overflow-y-auto scroll2 rounded-md md:left-[26%] md:w-[70%] bg-white border-2 `}>
           <h1 className='text-center text-back mt-2 font-bold md:text-2xl'>
             {pendingWithdrawals.length === 1 ? 'Pending Withdrawal' : 'No Withdrawal Pending '}</h1>
           <div class="relative scroll2 overflow-x-auto shadow-md sm:rounded-lg">
@@ -387,7 +387,7 @@ const Home = ({ sideview, image, setactive, setTrigger }) => {
                 <th scope="col" class="md:px-6 px-2 py-3 w-8">
                   Amount
                 </th>
-                <th scope="col" class="md:px-6 px-2 py-3 w-[35%]">
+                <th scope="col" class="md:px-6 px-2 py-3 hidden md:block w-[35%]">
                   Description
                 </th>
                 <th scope="col" class="md:px-6 px-2 py-3">
@@ -408,7 +408,7 @@ const Home = ({ sideview, image, setactive, setTrigger }) => {
                   <td class="md:px-6 px-2 md:py-4">
                     {formatter.format(item.amount)}
                   </td>
-                  <td class="md:px-6 md:py-4 md:w-[45%] w-[10%]  text-left">
+                  <td class="md:px-6 md:py-4 md:w-[45%] w-[10%]  text-left hidden md:block">
                     {item.message}
                   </td>
                   <td class={` capitalize  text-center ${item.status === 'pending' ? 'text-yellow-300 ' : 'px-2  text-green-500 '} ${item.status === 'declined' ? ' text-red-500' : ''} px-2  rounded-md mx-auto`}>
@@ -429,20 +429,20 @@ const Home = ({ sideview, image, setactive, setTrigger }) => {
       <div className="mt-5 w-[95%] mx-auto">
         <h1 className='text-2xl   font-bold'>Latest Transactions</h1>
 
-        <div class="overflow-x-auto scroll shadow-md sm:rounded-lg mt-4">
-          <table class=" md:w-full md:text-sm text-[12px] text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <div class="shadow-md sm:rounded-lg mt-4">
+          <table class=" w-full md:text-sm text-[12px] text-left rtl:text-right text-gray-500 ">
             <thead class="text-xs text-center text-white uppercase bg-gray-50 mainbg ">
               <tr>
               <th scope="col" class="md:px-6 px-2 py-3 w-10">
                   Type
                 </th>
-                <th scope="col" class="md:px-6 px-2 py-3 ">
+                <th scope="col" class="md:px-6 px-2 py-3">
                   Date
                 </th>
                 <th scope="col" class="md:px-6 px-2 py-3 w-8">
                   Amount
                 </th>
-                <th scope="col" class="md:px-6 px-2 py-3 w-[35%]">
+                <th scope="col" class="md:px-6 px-2 py-3  hidden md:block">
                   Description
                 </th>
                 <th scope="col" class="md:px-6 px-2 py-3">
@@ -454,16 +454,16 @@ const Home = ({ sideview, image, setactive, setTrigger }) => {
             <tbody>
               {alltrnx.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).slice(0, 5).map((item) => (
                 <tr class="bg-white border-b md:text-sm dark:bg-white " key={item.id}>
-                  <th scope="row" class={`${item.type === 'withdrawal' ? 'text-red-500' : item.type === 'deposit' ? 'text-green-500' : item.type !== 'withdrawal' || item.type !== 'deposit' ? 'text-teal-600' : ''} capitalize md:px-6 px-2 md:py-4 font-medium  whitespace-nowrap w-2  `}>
+                  <th scope="row" class={`${item.type === 'withdrawal' ? 'text-red-500' : item.type === 'deposit' ? 'text-green-500' : item.type !== 'withdrawal' || item.type !== 'deposit' ? 'text-teal-600' : ''} capitalize px-6 py-4 font-medium  whitespace-nowrap w-2  `}>
                     {item.type}
                   </th>
-                  <td class="md:px-6 px-2 py-4 text-center">
+                  <td class=" text-center ">
                     {moment(item.createdAt).format('DD MMMM YYYY hh:mm A')}
                   </td>
                   <td class="md:px-6 px-2 md:py-4">
                     {formatter.format(item.amount)}
                   </td>
-                  <td class="md:px-6 md:py-4 md:w-[45%] w-[10%]  text-left">
+                  <td class="md:px-6 md:py-4  hidden md:block  text-left">
                     {item.message}
                   </td>
                   <td class={` capitalize  text-center ${item.status === 'pending' ? 'text-yellow-300 ' : 'px-2  text-green-500 '} ${item.status === 'declined' ? ' text-red-500' : ''} px-2  rounded-md mx-auto`}>

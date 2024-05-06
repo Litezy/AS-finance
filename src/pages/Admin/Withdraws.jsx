@@ -142,7 +142,7 @@ const Withdraws = ({ setactive, setTrigger }) => {
                       <th scope="col" class="md:px-6 px-2 py-3 ">
                         Amount
                       </th>
-                      <th scope="col" class="md:px-6 px-2 py-3 w-[35%]">
+                      <th scope="col" class="md:px-6 px-2 py-3 hidden md:block">
                         Description
                       </th>
                       <th scope="col" class="md:px-6 px-2 py-3">
@@ -154,16 +154,16 @@ const Withdraws = ({ setactive, setTrigger }) => {
                   <tbody>
                     {allwithdraws.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).slice(0, 10).map((item) => (
                       <tr class="bg-white border-b  " key={item.id}>
-                        <th scope="row" class={`${item.type === 'withdrawal' ? 'text-red-500' : ''} ${item.type !== 'withdrawal' ? 'text-teal-500' : ''}  capitalize md:px-6 md:py-4 font-medium  whitespace-nowrap `}>
+                        <th scope="row" class={`${item.type === 'withdrawal' ? 'text-red-500' : ''} ${item.type !== 'withdrawal' ? 'text-teal-500' : ''}  capitalize px-6 py-4 font-medium  whitespace-nowrap `}>
                           {item.type}
                         </th>
-                        <td class="md:px-6 md:py-4 text-center ">
+                        <td class="text-center">
                           {moment(item.createdAt).format('DD MMMM YYYY hh:mm A')}
                         </td>
-                        <td class="md:px-6 px-2 md:py-4 text-center">
+                        <td class="text-center">
                           {formatter.format(item.amount)}
                         </td>
-                        <td class="md:px-6 md:py-4 md:w-[45%] w-[10%] text-left">
+                        <td class="md:px-6 md:py-4 hidden md:block text-left">
                           {item.message}
                         </td>
                         <td class={` capitalize  text-center ${item.status === 'pending' ? 'text-yellow-300 ' : 'px-2  text-green-500 '} ${item.status === 'declined' ? ' text-red-500' : ''}  rounded-md mx-auto`}>
@@ -183,11 +183,11 @@ const Withdraws = ({ setactive, setTrigger }) => {
 
         </>}
         {screen === 2 && <>
-          <div className="mt-5 ml-4 w-full relative">
+          <div className="mt-5 ml-4 w-full relative overflow-hidden">
             {loading && <Loading />}
-            <div className="text-center">
+            <div className="text-center h-fit flex  flex-col items-center justify-center ">
               <h1 className='text-2xl font-bold '>Review Your Request</h1>
-              <div className="w-fit ml-auto font-bold underline">Account Balance: {formatter.format(balance.total)}</div>
+              <div className=" font-bold underline">Account Balance: {formatter.format(balance.total)}</div>
               <div className="mt-10">
                 <h1 className='font-bold main underline text-lg'>Summary</h1>
                 <div className="flex flex-col items-center gap-5 w-full ">
@@ -197,7 +197,7 @@ const Withdraws = ({ setactive, setTrigger }) => {
                   </div>
                   <div className="flex items-center justify-start w-3/4 mx-auto gap-2">
                     <h1 className='font-bold'>Address: </h1>
-                    <p>{withdraw.address}</p>
+                    <p className='text-xs md:text-sm'>{withdraw.address}</p>
                   </div>
                   <div className="flex items-center justify-start w-3/4 mx-auto gap-2">
                     <h1 className='font-bold'>Amount: </h1>
@@ -206,7 +206,7 @@ const Withdraws = ({ setactive, setTrigger }) => {
                 </div>
               </div>
             </div>
-            <div className="flex w-full items-center justify-between mt-5">
+            <div className="flex w-3/4 mx-auto items-center justify-between mt-5">
               <button onClick={() => setScreen(1)} className='px-5 py-1 mainbg text-white rounded-full'>Back</button>
               <button onClick={SubmitTransaction} className='px-5 py-1 mainbg text-white rounded-full'>Submit</button>
             </div>

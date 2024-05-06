@@ -202,7 +202,7 @@ body {
   color: #430a5d;
 }
 .mainbg{
-  background-color: #430a5d;
+  background-color:#430a5d;
 }
 .alt2{
   background-color: #E26EE5;
@@ -281,4 +281,14 @@ input[type=number] {
   background-image: url(./assets/investment.jpg);
   background-repeat: no-repeat;
   object-fit: contain;
+}
+.purp{
+  color:#E26EE5;
+}
+.purpbg{
+  background-color:#E26EE5;
+}
+.abs{
+  left: 50%;
+  transform: translateX(-50%);
 }

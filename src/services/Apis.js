@@ -11,6 +11,8 @@ export const non_auth_urls = {
     verify: 'user/validateacc',
     uploadimg: 'user/uploadimg',
     login: 'user/login',
+    find_acc:'user/find-acc',
+    validate_acc:'user/validate-user-acc'
     
 }
     
@@ -37,6 +39,26 @@ export const auth_urls = {
     logout:'user/logout',
 }
 
+const Admin_url = 'admin'
+const adminUrls = {
+    all_users: Admin_url + '/all',
+    all_deposits:Admin_url + '/all-deposits',
+    all_kycs: Admin_url + '/all-kycs',
+    all_plans: Admin_url + '/all-plans',
+    all_withdrawals: Admin_url + '/all-withdrawals',
+    pending_deposits:Admin_url + '/pending-deposits',
+    pending_withdraws:Admin_url + '/pending-withdrawals',
+    confirmed_deposits: Admin_url + '/confirmed-deposits',
+    confirmed_withdraws: Admin_url + '/confirmed-withdrawals',
+    approve_deposit:Admin_url + '/validate-deposit',
+    decline_deposit: Admin_url + '/decline-depo',
+    approve_withdraw:Admin_url + '/validate-withdraw',
+    decline_withdraw:Admin_url + '/decline-with',
+    pending_kycs:Admin_url + '/pending-kycs',
+    approve_kyc: Admin_url + '/kyc-approve',
+    decline_kyc: Admin_url + '/kyc-decline'
+}
+
 const planUrl = 'plans'
 export const plan_urls ={
   allUserplans : planUrl + '/all',
@@ -44,6 +66,7 @@ export const plan_urls ={
 }
  const kyc_url = 'user/kyc-upload'
 export const Apis = {
+    admins: adminUrls,
     auth: auth_urls,
     Plans:plan_urls,
     non_auth: non_auth_urls,

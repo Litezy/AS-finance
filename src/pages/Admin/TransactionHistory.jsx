@@ -25,7 +25,7 @@ const TransactionHistory = () => {
   }, [])
   useEffect(() => {
     fetchAllTransactions()
-    console.log(alltransactions)
+   console.log(alltransactions)
   }, [])
 
   const plan = 'plan purchase'
@@ -33,14 +33,19 @@ const TransactionHistory = () => {
   const withdrawal = 'withdrawal'
   const [currentPage, setCurrentPage] = useState(1)
   const recordsPerPage = 10;
-  const lastIndex = currentPage * recordsPerPage;
+  let lastIndex = currentPage * recordsPerPage;
   let firstIndex = lastIndex - recordsPerPage;
-  if (firstIndex === 0) {
-    firstIndex = 1
-  }
   const records = alltransactions.slice(firstIndex, lastIndex)
   const npage = Math.ceil(alltransactions.length / recordsPerPage)
   const numbers = npage > 0 ? [...Array(npage).keys()].slice(1) : []
+
+    if(records.length === 0){
+      firstIndex = 0
+    }
+     if(firstIndex === 0){
+      firstIndex = 1
+    }
+  
 
   const check = () => {
     console.log(recordsPerPage)
@@ -79,13 +84,13 @@ const TransactionHistory = () => {
                 <th scope="col" class="md:px-6 px-2 py-3 w-10">
                   Type
                 </th>
-                <th scope="col" class="md:px-6 px-2 py-3 ">
+                <th scope="col" class="md:px-6 px-2 py-3  ">
                   Date
                 </th>
                 <th scope="col" class="md:px-6 px-2 py-3 w-8">
                   Amount
                 </th>
-                <th scope="col" class="md:px-6 px-2 py-3 w-[35%]">
+                <th scope="col" class="md:px-6 py-3 hidden md:block ">
                   Description
                 </th>
                 <th scope="col" class="md:px-6 px-2 py-3">
@@ -95,18 +100,18 @@ const TransactionHistory = () => {
               </tr>
             </thead>
             <tbody>
-              {records.map((item) => (
+              {records.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).slice(0,recordsPerPage).map((item) => (
                 <tr class="bg-white border-b " key={item.id}>
-                 <th scope="row" class={`${item.type === 'withdrawal'? 'text-red-500' :item.type === 'deposit' ?'text-green-500':item.type !== 'deposit' && item.type !== 'withdrawal' ?'text-teal-500':''} capitalize md:px-6 md:py-4 px-2 py-2 font-medium  whitespace-nowrap `}>
+                 <th scope="row" class={`${item.type === 'withdrawal'? 'text-red-500' :item.type === 'deposit' ?'text-green-500':item.type !== 'deposit' && item.type !== 'withdrawal' ?'text-teal-500':''} capitalize md:px-6 md:py-4 px-6 py-4 font-medium  whitespace-nowrap `}>
                     {item.type}
                   </th>
-                  <td class="md:px-6 md:py-4 text-center px-3">
+                  <td class=" w-[30%] text-center ">
                     {moment(item.createdAt).format('DD MMMM YYYY hh:mm A')}
                   </td>
-                  <td class="md:px-6 px-2 md:py-4 text-center">
+                  <td class=" text-center">
                     {formatter.format(item.amount)}
                   </td>
-                  <td class="md:px-6 md:py-4 md:w-[45%] w-[10%] text-left">
+                  <td class="px-6 py-4 hidden md:block">
                     {item.message}
                   </td>
                   <td class={` capitalize  text-center ${item.status === 'pending' ? 'text-yellow-300 ' : 'px-2  text-green-500 '} ${item.status === 'declined' ? ' text-red-500' : ''}  rounded-md mx-auto`}>
@@ -137,7 +142,9 @@ const TransactionHistory = () => {
 
               {numbers.map((n, i) => (
                 <div className={``} key={i}>
-                  <a onClick={(e) => changeCurrentPage(n, e)} href="#" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700  ">{n}</a>
+                   <a onClick={(e) => changeCurrentPage(n, e)} href="#" className={`flex items-center justify-center
+                    px-3 h-8 leading-tight   border border-gray-300
+                      ${currentPage === n ? 'bg-gray-500 text-white':'bg-white hover:bg-gray-100'}`}>{n}</a>
                 </div>
               ))}
               <button onClick={nextPage} class="flex items-center justify-center px-4 h-10 text-base font-medium

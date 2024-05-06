@@ -265,7 +265,7 @@ const Kyc = ({ setScreen, setSetsName, setSets }) => {
                                     <div className="mt-5 ">
                                         <h1 className='text-center text-lg font-bold'>Upload Front ID Image</h1>
 
-                                        <div className="md:h-60 h-24  w-11/12 mx-auto relative">
+                                        <div className="md:h-60 h-48  w-11/12 mx-auto relative">
                                             <label className={`${frontimg.img ? '' : 'border-2 border-black'} mt-5 w-full  h-full border-dashed flex cursor-pointer items-center justify-center `}>
                                                 {frontimg.img ? <div className="">
                                                     <div onChange={changeImagefront} className="absolute top-0 right-3 main font-bold ">
@@ -280,7 +280,7 @@ const Kyc = ({ setScreen, setSetsName, setSets }) => {
                                     <div className="mt-5 ">
                                         <h1 className='text-center text-lg font-bold'>Upload Back ID Image</h1>
 
-                                        <div className="md:h-60 h-24 w-11/12 mx-auto relative ">
+                                        <div className="md:h-60 h-48 w-11/12 mx-auto relative ">
                                             <label className={`${backimg.img ? '' : 'border-2 border-black border-dashed'} mt-5 w-full h-full  flex cursor-pointer items-center justify-center `}>
                                                 {backimg.img ? <div className="">
                                                     <div onChange={changeImageback} className="absolute top-0 right-3 main font-bold ">
@@ -317,7 +317,7 @@ const Kyc = ({ setScreen, setSetsName, setSets }) => {
                         <div className="flex mt-5 md:mt-0 items-center justify-center h-3/4 shadow-lg bg-white w-11/12 mx-auto rounded-md">
                             <div className="px-4 flex flex-col">
                                 <h1 className='md:text-center md:text-xl'>Kindly wait for your KYC submission to be approved.</h1>
-                                <p className='md:text-center text-sm'>This usually takes about 3-5 days.</p>
+                                <p className='md:text-center text-sm'>This usually takes about 3-5 working days.</p>
                                 <img src={pendingkyc} className='w-96 mx-auto' alt="" />
                             </div>
                         </div>

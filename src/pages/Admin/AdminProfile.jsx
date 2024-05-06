@@ -12,6 +12,7 @@ import { BsFillPatchCheckFill } from "react-icons/bs";
 
 const AdminProfile = () => {
   const [loading, setLoading] = useState(false)
+  
   const { isError, data, isLoading } = useQuery({
     queryKey: ['user-profile'],
     queryFn: async () => {
@@ -32,8 +33,8 @@ const AdminProfile = () => {
         <div className="md:flex items-center justify-between w-full ">
           <div className="md:h-60 w-full h-1/2 items-center justify-center relative md:w-1/3">
             <img src={`${profileImg}/profiles/${data?.image}`} className='w-60 h-60 mx-auto mb-5 md:mb-0 rounded-full object-cover' alt="" />
-           {data?.kyc_status === 'verified' && <div className="absolute top-0 right-10"><BsFillPatchCheckFill className='text-2xl text-blue-500' />
-            </div>}
+            {/* {data?.kyc_status === 'verified' && <div className="absolute top-0 right-10"><BsFillPatchCheckFill className='text-2xl text-blue-500' />
+            </div>} */}
           </div>
           <div className="md:w-fit flex-col ml-auto flex items-left">
             <h1 className='text-2xl '>Account Informations</h1>
@@ -48,20 +49,21 @@ const AdminProfile = () => {
               </div>
               <div className="flex items-center w-full gap-2 font-bold ">
                 <p>KYC Status:</p>
-              { data?.kyc_status === 'verified' && <BsFillPatchCheckFill className='text-xl text-blue-500' />}
-              { data?.kyc_status === 'submitted' &&  <div className="text-sm">Submitted, Awaiting Approval</div>}
-              { data?.kyc_status === 'unverified' && data?.kyc_status !== 'verified' && <div className="text-sm">Not Submitted</div>}
+                {data?.kyc_status === 'verified' && <BsFillPatchCheckFill className='text-xl text-blue-500' />}
+                {data?.kyc_status === 'submitted' && <div className="text-sm">Submitted, Awaiting Approval</div>}
+                {data?.kyc_status === 'unverified' && data?.kyc_status !== 'verified' && <div className="text-sm">Not Submitted</div>}
               </div>
               <div className="flex items-center w-full gap-2 font-bold ">
                 <p>Last Login:</p>
                 <p className='text-sm'>{data.last_login}</p>
               </div>
-             
+              {data.email_verified === 'false' &&
+                <button className="w-fit rounded-full mainbg px-4 py-1 text-white cursor-pointer ml-auto">verify email now</button>}
             </div>
           </div>
         </div>
         <div className="mt-5 h-fit w-full  border rounded-md text-sm bg-[white] py-5 px-4  shadow-lg">
-          <form  className="md:flex md:items-baseline gap-5 w-full md:h-40 justify-center">
+          <form className="md:flex md:items-baseline gap-5 w-full md:h-40 justify-center">
             <div className="md:w-1/2">
               <div className="flex flex-col w-full  ">
                 <h1>Full Name:</h1>
