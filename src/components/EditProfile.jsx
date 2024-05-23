@@ -3,6 +3,7 @@ import { FaArrowLeft, FaLessThanEqual } from 'react-icons/fa6'
 import { Apis, PostApi, profileImg } from '../services/Apis'
 import { FaEdit } from 'react-icons/fa'
 import { errorMessage, successMessage } from './utils/UtilNames'
+import { FaRegUser } from "react-icons/fa";
 
 const EditProfile = ({ setScreen, data, setSets, setSetsName }) => {
 
@@ -10,7 +11,7 @@ const EditProfile = ({ setScreen, data, setSets, setSetsName }) => {
 
     const [loading,setLoading] = useState(false)
     const [userimg, setuserImg] = useState({
-        img: `${profileImg}/profiles/${data?.image}` || null,
+        img: data?.image ? `${profileImg}/profiles/${data?.image}` : null,
         image: null
     })
     const [forms, setForms] = useState({

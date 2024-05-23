@@ -46,6 +46,7 @@ const Login = () => {
       const response = await PostApi(Apis.non_auth.login, formdata)
 
       if (response.status === 200) {
+        // return console.log(response)
         Cookies.set(CookieName, response.token,)
         successMessage(response.msg)
         const decoded = decodeToken(response.token)
@@ -141,6 +142,7 @@ const Login = () => {
     setLoading(true);
     try {
       const response = await PostApi(Apis.auth.update_password, formdata)
+     
       if (response.status === 200) {
         successMessage(response.msg)
         setForms({
@@ -182,8 +184,8 @@ const Login = () => {
 
             </div>
 
-            <div className="w-fit  py-4">
-              <button className='md:px-8 px-4 py-1 md:py-2 md:text-xl font-bold text-white rounded-full mainbg'>Login</button>
+            <div className=" rounded-md w-10/12 mainbg py-4 flex items-center h-10 mx-auto justify-center mt-5">
+              <button className='md:text-xl font-bold  w-full  text-white   text-center '>Login</button>
             </div>
             <div className="w-fit mr-auto ml-10 mt-5">
               <h2 className='text-sm '>Don't have an account? <Link className='main font-bold underline' to={`/signup`}>Sign up</Link></h2>

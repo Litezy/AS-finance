@@ -9,6 +9,7 @@ import Loading from '../../components/Loading';
 import moment from 'moment';
 import { useQuery } from '@tanstack/react-query';
 import { BsFillPatchCheckFill } from "react-icons/bs";
+import { FaRegUser } from "react-icons/fa";
 
 const AdminProfile = () => {
   const [loading, setLoading] = useState(false)
@@ -32,7 +33,11 @@ const AdminProfile = () => {
       <div className="md:flex items-center flex-col w-full gap-6 mt-10 border px-3 py-4 rounded-lg shadow-lg mb-3">
         <div className="md:flex items-center justify-between w-full ">
           <div className="md:h-60 w-full h-1/2 items-center justify-center relative md:w-1/3">
-            <img src={`${profileImg}/profiles/${data?.image}`} className='w-60 h-60 mx-auto mb-5 md:mb-0 rounded-full object-cover' alt="" />
+           {data?.image ? <img src={`${profileImg}/profiles/${data?.image}`} className='w-60 h-60 mx-auto mb-5 md:mb-0 rounded-full object-cover' alt="" /> : 
+           <div className="w-full h-full flex items-center justify-center">
+            <FaRegUser className='w-full h-full'/>
+           </div>
+           }
             {/* {data?.kyc_status === 'verified' && <div className="absolute top-0 right-10"><BsFillPatchCheckFill className='text-2xl text-blue-500' />
             </div>} */}
           </div>
@@ -80,8 +85,8 @@ const AdminProfile = () => {
                 <input type="text" value={data?.phone} readOnly className='w-full   outline-none border-b h-8' />
               </div>
               <div className="flex flex-col w-full mt-3  ">
-                <h1>Country:</h1>
-                <input type="text" value={data?.country} readOnly className='w-full capitalize outline-none border-b h-8' />
+                <h1>Email:</h1>
+                <input type="text" value={data?.email} readOnly className='w-full lowercase outline-none border-b h-8' />
               </div>
             </div>
           </form>

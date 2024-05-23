@@ -42,6 +42,7 @@ import notifyImg  from '../../assets/notifyimg.png'
 import chatImg  from '../../assets/chatimg.png'
 import { TfiHelpAlt } from "react-icons/tfi";
 import HelpChats from './HelpChats'
+import { FaRegUser } from "react-icons/fa";
 
 const AdminPageLayout = () => {
   const [active, setActive] = useState('home')
@@ -93,6 +94,8 @@ const AdminPageLayout = () => {
 
 const [sets,setSets] = useState(false)
 const [setsname,setSetsName] = useState('')
+const [livename,setLiveName] = useState('')
+const [live,setLive] = useState(false)
  
 //  console.log(data, profile)
  useEffect(()=>{
@@ -135,12 +138,13 @@ const [setsname,setSetsName] = useState('')
   }
  },[])
  const Icon1 = profileIcon === true? FaChevronDown: FaChevronUp
- 
+
 
 const navigate = useNavigate()
  const logoutUser = async ()=>{
     try {
       const response = await PostApi(Apis.auth.logout)
+      // return console.log(response)
       if(response.status === 200){
         successMessage(response.msg)
         Cookies.remove(CookieName)
@@ -228,7 +232,7 @@ const navigate = useNavigate()
       <div className="w-[25%] h-fit fixed top-0 left-0  border-r-2 bg-[#430a5d] hidden md:block rounded-e-none  ">
             <div className="w-11/12 mx-auto text-white mt-5  h-fit py-5 ">
            <div className="flex items-center gap-4 mb-5 relative">
-            <img src={`${profileImg}/profiles/${data?.image}`} alt="" className='w-10 h-10 rounded-full object-cover' />
+           { data?.image ? <img src={`${profileImg}/profiles/${data?.image}`} alt="" className='w-10 h-10 rounded-full object-cover' />: <FaRegUser className='text-2xl'/>}
            <div className="capitalize font-bold text-2xl">Hi, {data?.username}</div>
            {data?.kyc_status === 'verified' && 
            <div className="absolute top-0 md:right-32"><BsFillPatchCheckFill className='text-sm text-blue-500'/></div>}
@@ -310,7 +314,7 @@ const navigate = useNavigate()
             </div>
            </div>
 
-            <div className="md:w-[75%] w-full md:ml-auto  h-[fit]  rounded-sm bg-[#fff] relative">
+            <div className="md:w-[75%] w-full md:ml-auto h-fit  rounded-sm bg-[#fff] relative">
             {log && <div ref={logoutdiv} className="w-3/4 z-50 mx-auto h-screen fixed top-0 bg-black/20 flex items-center justify-center">
             <div className="w-[70%] rounded-md h-32 bg-white ">
              <h1 className='text-center font-bold mt-8 text-xl main'>Confirm Logout</h1>
@@ -322,23 +326,31 @@ const navigate = useNavigate()
            </div>}
             <div className={`flex md:w-3/4 ${smallview ? 'z-40' :'z-50'} w-full  items-center justify-between bg-[white] shadow-md px-4 md:px-3 py-3 fixed`}>
               <div className="md:flex hidden items-center justify-start gap-3 h-12">
-                <Link onClick={() => setActive('home')} className="text-lg text-[#430a5d] font-bold cursor-pointer ">Dashboard</Link>
+                <Link onClick={() => setActive('home')} className=" text-[#430a5d] font-bold cursor-pointer ">Dashboard</Link>
                 <FaChevronRight className='text-[#430a5d] text-sm' />
-                {active === 'home' && <p className=' font-bold text-xl text-black'>Overview</p>}
-                {active === 'deposit' && <p className='font-bold text-xl text-black'>Deposits</p>}
-                {active === 'withdraw' && <p className='font-bold text-xl text-black'>Withdraws</p>}
-                {active === 'investment' && <p className='font-bold text-xl text-black'>Investments</p>}
-                {active === 'transaction' && <p className='font-bold text-xl text-black'>Transaction History</p>}
-                {active === 'profile' && <p className='font-bold text-xl text-black'>Profile</p>}
-                {active === 'settings'  && !sets && <p className='font-bold text-xl text-black'>Settings</p>}
-                {active === 'settings'  && sets && <div className='font-bold text-xl text-black'>
+                {active === 'home' && <p className=' font-bold  text-black'>Overview</p>}
+                {active === 'deposit' && <p className='font-bold  text-black'>Deposits</p>}
+                {active === 'withdraw' && <p className='font-bold  text-black'>Withdraws</p>}
+                {active === 'investment' && <p className='font-bold  text-black'>Investments</p>}
+                {active === 'help' && !live && <p className='font-bold  text-black'>Help</p>}
+                {active === 'help' && live && <div className='font-bold  text-black'>
+                <div className="flex items-center gap-3">
+                    <p>Help</p>
+                    <FaChevronRight className='text-[#430a5d] text-sm' />
+                    <p>{livename}</p>
+                  </div>
+                  </div>}
+                {active === 'transaction' && <p className='font-bold  text-black'>Transaction History</p>}
+                {active === 'profile' && <p className='font-bold  text-black'>Profile</p>}
+                {active === 'settings'  && !sets && <p className='font-bold  text-black'>Settings</p>}
+                {active === 'settings'  && sets && <div className='font-bold  text-black'>
                   <div className="flex items-center gap-3">
                     <p>Settings</p>
                     <FaChevronRight className='text-[#430a5d] text-sm' />
                     <p>{setsname}</p>
                   </div>
                   </div>}
-                {active === 'notifications' && <p className='font-bold text-xl text-black'>Notifications</p>}
+                {active === 'notifications' && <p className='font-bold  text-black'>Notifications</p>}
               </div>
               <div  onClick={()=> setSmallView(prev => !prev)} className="text-sm md:hidden text-[#430a5d] "><FaBarsStaggered className='text-2xl cursor-pointer'/></div>
               <div className="flex w-[37%] md:w-[20%] items-center gap-3 relative">
@@ -350,7 +362,7 @@ const navigate = useNavigate()
                 </div>
                 <div className="flex items-center gap-5 md:relative">
                  <img src={chatImg} className='w-10 cursor-pointer' alt="" />
-                  <img onClick={() => setActive('profile')} src={`${profileImg}/profiles/${data?.image}`} alt="" className='w-8 h-8 object-cover rounded-full cursor-pointer' />
+                  {data?.image ?<img onClick={() => setActive('profile')} src={`${profileImg}/profiles/${data?.image}`} alt="" className='w-8 h-8 object-cover rounded-full cursor-pointer' />: <FaRegUser className='text-black text-xl'/>}
                   {data?.kyc_status === 'verified' && <div className="absolute top-0 right-0 pl-4 md:right-5"><BsFillPatchCheckFill className='text-xs text-blue-500'/></div>}
                   <Icon1 onClick={() => setProfileIcon(prev => !prev)} className='text-sm cursor-pointer hidden md:block'/>
              
@@ -377,7 +389,7 @@ const navigate = useNavigate()
            </div>
            </>}
             </div>
-            <div className="div w-full">
+            <div className="div w-full h-fit">
               {active === 'home' && <div className="">
               <Home setTrigger={settrigger} setactive={setActive} /></div>}
             
@@ -391,10 +403,10 @@ const navigate = useNavigate()
               <Withdraws setactive={setActive} 
               setTrigger={settrigger}
               /></div>}
-            {active === 'investment' && <div className="">
+            {active === 'investment' && <div className="">cd 
               <Investments /></div>}
             {active === 'help' && <div className="">
-              <HelpChats /></div>}
+              <HelpChats setLive={setLive} setLiveName={setLiveName}/></div>}
             {active === 'notifications' && <div className="">
               <Notifications settrigger={settrigger}/></div>}
             {active === 'transaction' && <div className="">

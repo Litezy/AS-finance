@@ -157,7 +157,7 @@ const Withdraws = ({ setactive, setTrigger }) => {
                         <th scope="row" class={`${item.type === 'withdrawal' ? 'text-red-500' : ''} ${item.type !== 'withdrawal' ? 'text-teal-500' : ''}  capitalize px-6 py-4 font-medium  whitespace-nowrap `}>
                           {item.type}
                         </th>
-                        <td class="text-center">
+                        <td class="text-center text-xs">
                           {moment(item.createdAt).format('DD MMMM YYYY hh:mm A')}
                         </td>
                         <td class="text-center">

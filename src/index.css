@@ -292,3 +292,58 @@ input[type=number] {
   left: 50%;
   transform: translateX(-50%);
 }
+.plus {
+   transform: rotate(0deg);
+}
+.rotate {
+  transform: rotate(45deg); 
+}
+
+.incoming::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -0.3rem;
+  border-style: solid;
+  border-width: 0.35rem;
+  border-color: #cbd5e1 #cbd5e1 transparent transparent;
+}
+.outgoing::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: -0.35rem;
+  border-style: solid;
+  border-width: 0.3rem;
+  border-color: #430a5d transparent transparent #430a5d;
+}
+.loading-dots {
+  animation: loading 1s infinite;
+}
+
+@keyframes loading {
+  0% {
+    content: '.';
+  }
+  33% {
+    content: '..';
+  }
+  66% {
+    content: '...';
+  }
+}
+
+.chatscroll::-webkit-scrollbar{
+  width: 5px;
+  background-color:whitesmoke ;
+  border-radius: 50px;
+}
+.chatscroll::-webkit-scrollbar-thumb{
+  width: 5px;
+  border-radius: 50px;
+  background-color: #430a5d;
+
+}
+/* .chatscroll{
+  margin-right: .5rem;
+} */
