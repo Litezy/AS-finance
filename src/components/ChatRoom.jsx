@@ -191,7 +191,7 @@ useEffect(()=>{
                                         <h1 className='text-white text-sm'>typing...</h1>
                                     </div>
                                 </div>
-                                <p className={`${status === 'offline' ? 'text-gray-500' : 'text-green-500'}`}>offline</p>
+                                <p className={`${status === 'offline' ? 'text-gray-500' : 'text-green-500'}`}>{activechats?.status}</p>
                             </div>
                         </div>
                         {!chats && <div className=" w-fit text-sm max-w-2/4  text-white rounded-md px-2  mainbg outgoing relative  ml-auto border mt-12 mr-2 ">

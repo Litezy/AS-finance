@@ -308,6 +308,15 @@ input[type=number] {
   border-width: 0.35rem;
   border-color: #cbd5e1 #cbd5e1 transparent transparent;
 }
+.incomingadmin::before{
+  content: "";
+  position: absolute;
+  top: 2;
+  left: -0.4rem;
+  border-style: solid;
+  border-width: 0.35rem;
+  border-color: #cbd5e1 #cbd5e1 transparent transparent;
+}
 .outgoing::before {
   content: "";
   position: absolute;
@@ -344,6 +353,14 @@ input[type=number] {
   background-color: #430a5d;
 
 }
-/* .chatscroll{
-  margin-right: .5rem;
-} */
+.scrolladmin::-webkit-scrollbar-thumb{
+  width: 2px;
+  border-radius: 50px;
+  background-color: #6b1b91;
+
+}
+.scrolladmin::-webkit-scrollbar{
+  width: 5px;
+  background-color:white ;
+  border-radius: 50px;
+}

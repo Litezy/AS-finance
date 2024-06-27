@@ -64,7 +64,10 @@ const adminUrls = {
     decline_withdraw: Admin_url + '/decline-with',
     pending_kycs: Admin_url + '/pending-kycs',
     approve_kyc: Admin_url + '/kyc-approve',
-    decline_kyc: Admin_url + '/kyc-decline'
+    decline_kyc: Admin_url + '/kyc-decline',
+    fetch_active_chats :Admin_url +'/all-active-chats',
+    fetch_rooms: Admin_url+ '/admin-chats',
+    fetch_Probchat: Admin_url + '/admin-probs'
 }
 
 const chatsUrl = 'chats'

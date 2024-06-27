@@ -6,6 +6,7 @@ import { useQuery } from '@tanstack/react-query'
 import { dispatchMessages, dispatchRoomid } from '../app/reducer'
 import moment from 'moment'
 import Loading from './Loading'
+import { MoveToBottom } from './utils/functions'
 
 
 
@@ -129,6 +130,7 @@ const ChatsHistory = ({ fetchActive, fetchInactive, inactivechats, setLive, setS
                     setChats(false)
                     setActiveId(response.id)
                     setStat(response.stat)
+                    MoveToBottom()
                 }
             } else {
                 errorMessage(response.msg)
@@ -210,10 +212,10 @@ const ChatsHistory = ({ fetchActive, fetchInactive, inactivechats, setLive, setS
     return (
         <div className='w-full h-full  '>
             <div className="h-[100dvh] w-full flex items-center gap-5 flex-col ">
-                <button onClick={back} className="w-fit mr-auto px-4 py-1.5 bg-[#1f2937] text-white rounded-md">back</button>
+                <button onClick={back} className="w-fit mr-auto px-4 py-1.5 mainbg text-white rounded-md">back</button>
 
                 {loading && <Loading />}
-                <div className="h-fit  w-full border overflow-y-auto py-2 rounded-md bg-[#1f2937]">
+                <div className="h-fit  w-full border overflow-y-auto py-2 rounded-md mainbg">
 
                     {activechats ? <>
                         {load &&
@@ -233,7 +235,7 @@ const ChatsHistory = ({ fetchActive, fetchInactive, inactivechats, setLive, setS
                                     <h3 className='capitalize main font-semibold'> Admin {activechats?.username}</h3>
                                     <div className="">
                                         <span className='text-gray-700 pr-1'>{lastmessage === profile.id ? 'me:' : 'admin:'}</span>  
-                                        <span>{lastMessage?.content.slice(0, 50)}{lastMessage?.content > 50 ? '...' : ''}</span> </div>
+                                        <span>{lastMessage?.content.slice(0, 50)}{lastMessage?.content.length > 49 ? '...' : ''}</span> </div>
                                 </div>
                             </div>
                             {unread.length > 0 && <div className="h-5 w-5 text-sm rounded-full bg-red-500 text-white flex items-center justify-center">
@@ -271,7 +273,7 @@ const ChatsHistory = ({ fetchActive, fetchInactive, inactivechats, setLive, setS
                         </div>
                     }
                 </div>
-                <div className="h-fit mx-h-[50dvh] w-full border py-2 bg-[#1f2937] rounded-md overflow-y-auto">
+                <div className="h-fit mx-h-[50dvh] w-full border py-2 mainbg rounded-md overflow-y-auto">
                     <h1 className='text-center text-white font-semibold '>Inactive Chat Sessions</h1>
                     {inactivechats ? <>
                         {inactivechats.map((item, i) => {

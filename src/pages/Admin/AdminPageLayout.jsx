@@ -96,6 +96,7 @@ const [sets,setSets] = useState(false)
 const [setsname,setSetsName] = useState('')
 const [livename,setLiveName] = useState('')
 const [live,setLive] = useState(false)
+const [chats, setChats] = useState(false)
  
 //  console.log(data, profile)
  useEffect(()=>{
@@ -155,6 +156,10 @@ const navigate = useNavigate()
     } catch (error) {
       return errorMessage(error.message)
     }
+ }
+
+ const changeScreen = ()=>{
+  setActive('help')
  }
   return (  
  <>
@@ -229,6 +234,10 @@ const navigate = useNavigate()
         </div>
         
         }
+    <div className="">
+    </div>
+
+
       <div className="w-[25%] h-fit fixed top-0 left-0  border-r-2 bg-[#430a5d] hidden md:block rounded-e-none  ">
             <div className="w-11/12 mx-auto text-white mt-5  h-fit py-5 ">
            <div className="flex items-center gap-4 mb-5 relative">
@@ -361,7 +370,7 @@ const navigate = useNavigate()
                 </div>
                 </div>
                 <div className="flex items-center gap-5 md:relative">
-                 <img src={chatImg} className='w-10 cursor-pointer' alt="" />
+                 <img onClick={changeScreen} src={chatImg} className='w-10 cursor-pointer' alt="" />
                   {data?.image ?<img onClick={() => setActive('profile')} src={`${profileImg}/profiles/${data?.image}`} alt="" className='w-8 h-8 object-cover rounded-full cursor-pointer' />: <FaRegUser className='text-black text-xl'/>}
                   {data?.kyc_status === 'verified' && <div className="absolute top-0 right-0 pl-4 md:right-5"><BsFillPatchCheckFill className='text-xs text-blue-500'/></div>}
                   <Icon1 onClick={() => setProfileIcon(prev => !prev)} className='text-sm cursor-pointer hidden md:block'/>
@@ -405,6 +414,8 @@ const navigate = useNavigate()
               /></div>}
             {active === 'investment' && <div className="">cd 
               <Investments /></div>}
+            {chats && <div className="">
+              <HelpChats setLive={setLive} setLiveName={setLiveName}/></div>}
             {active === 'help' && <div className="">
               <HelpChats setLive={setLive} setLiveName={setLiveName}/></div>}
             {active === 'notifications' && <div className="">
